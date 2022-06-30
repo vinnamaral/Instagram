@@ -20,6 +20,8 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/button_loading.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_custom.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.22982774252039892" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.22982774252039892" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1911231884057971" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_register_email.xml" value="0.375" />
