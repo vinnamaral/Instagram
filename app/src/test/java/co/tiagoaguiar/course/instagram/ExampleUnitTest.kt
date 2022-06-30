@@ -1,4 +1,4 @@
-package co.tiagoaguiar.course.instagram
+package com.vinicius.instagram
 
 import org.junit.Test
 

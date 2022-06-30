@@ -12,6 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_register_photo"
-        android:name="co.tiagoaguiar.course.instagram.register.view.RegisterPhotoFragment"/>
+        android:name="com.vinicius.instagram.register.view.RegisterPhotoFragment"/>
 
 </LinearLayout>
