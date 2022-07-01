@@ -1,6 +1,6 @@
-# Descrição
+# Instagram
 
-Instagram remake
+O objetivo desse projeto é criar uma réplica do Instagram
 
 ## Arquitetura
 
