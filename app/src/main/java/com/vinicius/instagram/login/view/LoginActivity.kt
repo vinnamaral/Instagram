@@ -2,14 +2,11 @@ package com.vinicius.instagram.login.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
+import com.vinicius.instagram.common.util.TxtWatcher
 import com.vinicius.instagram.databinding.ActivityLoginBinding
-import com.vinicius.instagram.R
+import com.vinicius.instagram.login.Login
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), Login.View {
 
   private lateinit var binding: ActivityLoginBinding
 
@@ -25,30 +22,37 @@ class LoginActivity : AppCompatActivity() {
       loginEditPassword.addTextChangedListener(watcher)
 
       loginBtnEnter.setOnClickListener {
-        loginBtnEnter.showProgress(true)
+        // CHAMAR O PRESENTER !!!!
 
-        loginEditEmailInput.error = "Esse e-mail é inválido"
-        loginEditPasswordInput.error = "Senha incorreta"
-
-        Handler(Looper.getMainLooper()).postDelayed({
-          loginBtnEnter.showProgress(false)
-        }, 2000)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//          loginBtnEnter.showProgress(false)
+//        }, 2000)
       }
     }
   }
 
-  private val watcher = object : TextWatcher {
-    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-    }
-
-    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-      findViewById<LoadingButton>(R.id.login_btn_enter).isEnabled = p0.toString().isNotEmpty()
-    }
-
-    override fun afterTextChanged(p0: Editable?) {
-
-    }
-
+  private val watcher = TxtWatcher {
+    binding.loginBtnEnter.isEnabled = it.isNotEmpty()
   }
+
+  override fun showProgress(enabled: Boolean) {
+    binding.loginBtnEnter.showProgress(enabled)
+  }
+
+  override fun displayEmailFailure(emailError: Int?) {
+    binding.loginEditEmailInput.error = emailError?.let { getString(it) }
+  }
+
+  override fun displayPasswordFailure(passwordError: Int?) {
+    binding.loginEditPasswordInput.error = passwordError?.let { getString(it) }
+  }
+
+  override fun onUserAuthenticated() {
+    // IR PARA A TELA PRINCIPAL
+  }
+
+  override fun onUserUnauthorized() {
+    // MOSTRAR UM ALERTA
+  }
+
 }
