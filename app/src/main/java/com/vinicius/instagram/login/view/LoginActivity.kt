@@ -1,13 +1,17 @@
 package com.vinicius.instagram.login.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import com.vinicius.instagram.common.base.DependencyInjector
 import com.vinicius.instagram.common.util.TxtWatcher
 import com.vinicius.instagram.databinding.ActivityLoginBinding
 import com.vinicius.instagram.login.Login
+import com.vinicius.instagram.login.data.LoginRepository
 import com.vinicius.instagram.login.presentation.LoginPresenter
+import com.vinicius.instagram.main.view.MainActivity
+import com.vinicius.instagram.login.data.FakeDataSource
 
 class LoginActivity : AppCompatActivity(), Login.View {
 
@@ -22,7 +26,7 @@ class LoginActivity : AppCompatActivity(), Login.View {
 
     setContentView(binding.root)
 
-    presenter = LoginPresenter(this)
+    presenter = LoginPresenter(this, DependencyInjector.loginRepository())
 
     with(binding) {
       loginEditEmail.addTextChangedListener(watcher)
@@ -38,9 +42,6 @@ class LoginActivity : AppCompatActivity(), Login.View {
       loginBtnEnter.setOnClickListener {
         presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
 
-//        Handler(Looper.getMainLooper()).postDelayed({
-//          loginBtnEnter.showProgress(false)
-//        }, 2000)
       }
     }
   }
@@ -68,11 +69,13 @@ class LoginActivity : AppCompatActivity(), Login.View {
   }
 
   override fun onUserAuthenticated() {
-    // IR PARA A TELA PRINCIPAL
+    val intent = Intent(this, MainActivity::class.java)
+    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
   }
 
-  override fun onUserUnauthorized() {
-    // MOSTRAR UM ALERTA
+  override fun onUserUnauthorized(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
   }
 
 }
