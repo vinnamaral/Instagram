@@ -9,7 +9,7 @@ class FakeDataSource : LoginDataSource {
         Handler(Looper.getMainLooper()).postDelayed({
 
             // SELECT * FROM USER_AUTH WHERE EMAIL = ? LIMIT 1
-            val userAuth = Database.userAuth.firstOrNull() { email == it.email }
+            val userAuth = Database.usersAuth.firstOrNull() { email == it.email }
 
             when {
                 userAuth == null -> {
