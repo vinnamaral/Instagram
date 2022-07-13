@@ -7,7 +7,7 @@ import com.vinicius.instagram.common.base.BaseView
 interface RegisterNameAndPassword {
 
     interface Presenter : BasePresenter {
-        fun create(name: String, password: String, confirm: String)
+        fun create(email: String, name: String, password: String, confirm: String)
     }
 
     interface View: BaseView<Presenter> {
@@ -20,7 +20,5 @@ interface RegisterNameAndPassword {
         fun onCreateFailure(message: String)
 
         fun onCreateSuccess(name: String)
-
-        fun goToNameAndPasswordScreen(email: String)
     }
 }
