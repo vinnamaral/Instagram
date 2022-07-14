@@ -1,5 +1,6 @@
 package com.vinicius.instagram.register.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ class RegisterNamePasswordFragment :
     RegisterNameAndPassword.View {
 
     private var binding: FragmentRegisterNamePasswordBinding? = null
+    private var fragmentAttachListener: FragmentAttachListener? = null
 
     override lateinit var presenter: RegisterNameAndPassword.Presenter
 
@@ -62,6 +64,13 @@ class RegisterNamePasswordFragment :
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentAttachListener) {
+            fragmentAttachListener = context
+        }
+    }
+
     override fun showProgress(enabled: Boolean) {
         binding?.registerNameBtnNext?.showProgress(enabled)
     }
@@ -79,7 +88,7 @@ class RegisterNamePasswordFragment :
     }
 
     override fun onCreateSuccess(name: String) {
-        //TODO("Not yet implemented")
+        fragmentAttachListener?.goToNameAndPasswordScreen(name)
     }
 
     private val watcher = TxtWatcher {
