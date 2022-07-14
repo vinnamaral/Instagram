@@ -99,6 +99,7 @@ class RegisterNamePasswordFragment :
 
     override fun onDestroy() {
         binding = null
+        fragmentAttachListener = null
         presenter.onDestroy()
         super.onDestroy()
     }

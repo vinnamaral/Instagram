@@ -62,6 +62,7 @@ class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
 
     override fun onDestroy() {
         binding = null
+        fragmentAttachListener = null
         super.onDestroy()
     }
 }
