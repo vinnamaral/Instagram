@@ -14,7 +14,6 @@ class CustomDialog(context: Context) : Dialog(context) {
 
     private lateinit var txtButtons: Array<TextView>
 
-
     private var titleId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,19 +28,20 @@ class CustomDialog(context: Context) : Dialog(context) {
         this.titleId = titleId
     }
 
-    fun addButon(vararg texts: Int, listener: View.OnClickListener) {
+    fun addButton(vararg texts: Int, listener: View.OnClickListener) {
         txtButtons = Array(texts.size) {
             TextView(context)
         }
 
-        texts.forEachIndexed { index, textId ->
-            txtButtons[index].id = textId
-            txtButtons[index].setText(textId)
+        texts.forEachIndexed { index, txtId ->
+            txtButtons[index].id = txtId
+            txtButtons[index].setText(txtId)
             txtButtons[index].setOnClickListener {
                 listener.onClick(it)
                 dismiss()
             }
         }
+
     }
 
     override fun show() {
@@ -58,4 +58,5 @@ class CustomDialog(context: Context) : Dialog(context) {
             binding.dialogContainer.addView(textView, layoutParams)
         }
     }
+
 }

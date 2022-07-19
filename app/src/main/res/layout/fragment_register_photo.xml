@@ -18,15 +18,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="70dp">
+            android:paddingBottom="70dp"
+            android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/register_img_profile"
                 android:layout_marginBottom="48dp"
                 android:src="@drawable/photo_icon"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_height="150dp"
                 android:contentDescription="@null" />
 
             <TextView
@@ -42,7 +43,7 @@
                 android:layout_gravity="center_horizontal"
                 style="@style/Theme.Instagram.TextViewBase.Form" />
 
-            <com.vinicius.instagram.login.view.LoadingButton
+            <com.vinicius.instagram.common.view.LoadingButton
                 android:id="@+id/register_btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

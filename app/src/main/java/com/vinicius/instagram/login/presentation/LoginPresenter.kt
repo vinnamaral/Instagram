@@ -50,5 +50,4 @@ class LoginPresenter(
     override fun onDestroy() {
         view = null
     }
-
 }

@@ -12,9 +12,9 @@ import com.vinicius.instagram.common.base.DependencyInjector
 import com.vinicius.instagram.common.util.TxtWatcher
 import com.vinicius.instagram.register.RegisterNameAndPassword
 import com.vinicius.instagram.register.presentation.RegisterNameAndPasswordPresenter
+import java.lang.IllegalArgumentException
 
-class RegisterNamePasswordFragment :
-    Fragment(R.layout.fragment_register_name_password),
+class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_password),
     RegisterNameAndPassword.View {
 
     private var binding: FragmentRegisterNamePasswordBinding? = null
@@ -51,13 +51,13 @@ class RegisterNamePasswordFragment :
                 registerEditPassword.addTextChangedListener(watcher)
                 registerEditConfirm.addTextChangedListener(watcher)
 
-                registerEditName.addTextChangedListener( TxtWatcher {
+                registerEditName.addTextChangedListener(TxtWatcher {
                     displayNameFailure(null)
                 })
-                registerEditPassword.addTextChangedListener( TxtWatcher {
+                registerEditPassword.addTextChangedListener(TxtWatcher {
                     displayPasswordFailure(null)
                 })
-                registerEditConfirm.addTextChangedListener( TxtWatcher {
+                registerEditConfirm.addTextChangedListener(TxtWatcher {
                     displayPasswordFailure(null)
                 })
             }
@@ -80,7 +80,7 @@ class RegisterNamePasswordFragment :
     }
 
     override fun displayPasswordFailure(passError: Int?) {
-        binding?.registerEditNamePasswordInput?.error = passError?.let { getString(it) }
+        binding?.registerEditPasswordInput?.error = passError?.let { getString(it) }
     }
 
     override fun onCreateFailure(message: String) {
@@ -88,7 +88,7 @@ class RegisterNamePasswordFragment :
     }
 
     override fun onCreateSuccess(name: String) {
-        fragmentAttachListener?.goToNameAndPasswordScreen(name)
+        fragmentAttachListener?.goToWelcomeScreen(name)
     }
 
     private val watcher = TxtWatcher {
@@ -97,9 +97,9 @@ class RegisterNamePasswordFragment :
                 && binding?.registerEditConfirm?.text.toString().isNotEmpty()
     }
 
+
     override fun onDestroy() {
         binding = null
-        fragmentAttachListener = null
         presenter.onDestroy()
         super.onDestroy()
     }

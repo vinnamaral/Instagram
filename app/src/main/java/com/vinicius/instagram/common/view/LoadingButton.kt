@@ -1,4 +1,4 @@
-package com.vinicius.instagram.login.view
+package com.vinicius.instagram.common.view
 
 import android.content.Context
 import android.util.AttributeSet

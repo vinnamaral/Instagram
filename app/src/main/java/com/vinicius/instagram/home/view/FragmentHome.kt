@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vinicius.instagram.R
 
 class FragmentHome : Fragment() {
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -47,10 +48,14 @@ class FragmentHome : Fragment() {
             return 30
         }
 
+
         private class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            fun bind(image : Int) {
+            fun bind(image: Int) {
                 itemView.findViewById<ImageView>(R.id.home_img_post).setImageResource(image)
             }
         }
+
+
     }
+
 }

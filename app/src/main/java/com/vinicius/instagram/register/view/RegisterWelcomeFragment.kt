@@ -14,8 +14,10 @@ import com.vinicius.instagram.databinding.FragmentRegisterNamePasswordBinding
 import com.vinicius.instagram.databinding.FragmentRegisterWelcomeBinding
 import com.vinicius.instagram.register.RegisterNameAndPassword
 import com.vinicius.instagram.register.presentation.RegisterNameAndPasswordPresenter
+import java.lang.IllegalArgumentException
 
 class RegisterWelcomeFragment : Fragment(R.layout.fragment_register_welcome) {
+
     private var binding: FragmentRegisterWelcomeBinding? = null
     private var fragmentAttachListener: FragmentAttachListener? = null
 
@@ -47,11 +49,11 @@ class RegisterWelcomeFragment : Fragment(R.layout.fragment_register_welcome) {
 
     override fun onDestroy() {
         binding = null
-        fragmentAttachListener = null
         super.onDestroy()
     }
 
     companion object {
         const val KEY_NAME = "key_name"
     }
+
 }
