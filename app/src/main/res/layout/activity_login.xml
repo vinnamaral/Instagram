@@ -94,6 +94,7 @@
     <TextView
         android:id="@+id/login_txt_register"
         style="@style/Theme.Instagram.TextViewBase"
+        android:textColor="@color/black"
         android:text="@string/does_not_have_account"
         android:layout_width="match_parent"
         android:textAlignment="center"
