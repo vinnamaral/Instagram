@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="70dp"
             android:orientation="vertical">
-
+            
             <TextView
                 android:id="@+id/register_txt_welcome"
                 android:text="@string/welcome_to_instagram"

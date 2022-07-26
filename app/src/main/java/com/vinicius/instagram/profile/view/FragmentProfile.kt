@@ -54,5 +54,8 @@ class FragmentProfile : Fragment() {
                 itemView.findViewById<ImageView>(R.id.item_profile_img_grid).setImageResource(image)
             }
         }
+
+
     }
+
 }

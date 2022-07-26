@@ -61,4 +61,5 @@ class LoadingButton : FrameLayout {
             progress.visibility = View.GONE
         }
     }
+
 }
