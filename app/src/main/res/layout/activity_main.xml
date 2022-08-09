@@ -13,6 +13,7 @@
         android:layout_height="0dp">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/main_appbar"
             android:layout_width="match_parent"
             android:backgroundTint="@color/white"
             android:layout_height="wrap_content">
@@ -34,11 +35,9 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <fragment
+        <FrameLayout
             android:id="@+id/main_fragment"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:name="com.vinicius.instagram.camera.view.FragmentCamera"
-            tools:layout="@layout/fragment_gallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

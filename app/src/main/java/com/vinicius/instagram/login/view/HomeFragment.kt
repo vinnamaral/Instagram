@@ -1,22 +1,24 @@
-package com.vinicius.instagram.search.view
+package com.vinicius.instagram.login.view
 
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vinicius.instagram.R
 
-class FragmentSearch : Fragment() {
+class HomeFragment : Fragment() {
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rv = view.findViewById<RecyclerView>(R.id.search_rv)
+        val rv = view.findViewById<RecyclerView>(R.id.home_rv)
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.adapter = PostAdapter()
     }
@@ -35,7 +37,7 @@ class FragmentSearch : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
             return PostViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_user_list, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_post_list, parent, false)
             )
         }
 
@@ -47,10 +49,14 @@ class FragmentSearch : Fragment() {
             return 30
         }
 
+
         private class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            fun bind(image : Int) {
-                itemView.findViewById<ImageView>(R.id.search_img_user).setImageResource(image)
+            fun bind(image: Int) {
+                itemView.findViewById<ImageView>(R.id.item_profile_img_grid).setImageResource(image)
             }
         }
+
+
     }
+
 }
