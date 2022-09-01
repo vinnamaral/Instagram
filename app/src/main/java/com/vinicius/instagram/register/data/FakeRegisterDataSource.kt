@@ -4,72 +4,71 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import com.vinicius.instagram.common.model.Database
-import com.vinicius.instagram.common.model.Photo
 import com.vinicius.instagram.common.model.UserAuth
 import java.util.*
 
 class FakeRegisterDataSource : RegisterDataSource {
 
-    override fun create(email: String, callback: RegisterCallback) {
-        Handler(Looper.getMainLooper()).postDelayed({
+  override fun create(email: String, callback: RegisterCallback) {
+    Handler(Looper.getMainLooper()).postDelayed({
 
-            val userAuth = Database.usersAuth.firstOrNull { email == it.email }
+      val userAuth = Database.usersAuth.firstOrNull { email == it.email }
 
-            if (userAuth == null) {
-                callback.onSuccess()
-            } else {
-                callback.onFailure("Usuário já cadastrado")
-            }
+      if (userAuth == null) {
+        callback.onSuccess()
+      } else {
+        callback.onFailure("Usuário já cadastrado")
+      }
 
-            callback.onComplete()
-        }, 2000)
-    }
+      callback.onComplete()
+    }, 2000)
+  }
 
-    override fun create(email: String, name: String, password: String, callback: RegisterCallback) {
-        Handler(Looper.getMainLooper()).postDelayed({
+  override fun create(email: String, name: String, password: String, callback: RegisterCallback) {
+    Handler(Looper.getMainLooper()).postDelayed({
 
-            val userAuth = Database.usersAuth.firstOrNull { email == it.email }
+      val userAuth = Database.usersAuth.firstOrNull { email == it.email }
 
-            if (userAuth != null) {
-                callback.onFailure("Usuário já cadastrado")
-            } else {
-                val newUser = UserAuth(UUID.randomUUID().toString(), name, email, password)
+      if (userAuth != null) {
+        callback.onFailure("Usuário já cadastrado")
+      } else {
+        val newUser = UserAuth(UUID.randomUUID().toString(), name, email, password, null)
 
-                val created = Database.usersAuth.add(newUser)
+        val created = Database.usersAuth.add(newUser)
 
-                if (created) {
-                    Database.sessionAuth = newUser
-                    callback.onSuccess()
-                } else {
-                    callback.onFailure("Erro interno no servidor.")
-                }
+        if (created) {
+          Database.sessionAuth = newUser
 
-            }
-            callback.onComplete()
-        }, 2000)
-    }
+          Database.followers[newUser.uuid] = hashSetOf()
+          Database.posts[newUser.uuid] = hashSetOf()
+          Database.feeds[newUser.uuid] = hashSetOf()
 
-    override fun updateUser(photoUri: Uri, callback: RegisterCallback) {
-        Handler(Looper.getMainLooper()).postDelayed({
+          callback.onSuccess()
+        } else {
+          callback.onFailure("Erro interno no servidor.")
+        }
 
-            val userAuth = Database.sessionAuth
+      }
+      callback.onComplete()
+    }, 2000)
+  }
 
-            if (userAuth == null) {
-                callback.onFailure("Usuário não encontrado")
-            } else {
-                val newPhoto = Photo(userAuth.uuid, photoUri)
+  override fun updateUser(photoUri: Uri, callback: RegisterCallback) {
+    Handler(Looper.getMainLooper()).postDelayed({
 
-                val created = Database.photos.add(newPhoto)
+      val userAuth = Database.sessionAuth
 
-                if (created) {
-                    callback.onSuccess()
-                } else {
-                    callback.onFailure("Erro interno no servidor.")
-                }
+      if (userAuth == null) {
+        callback.onFailure("Usuário não encontrado")
+      } else {
+        val index = Database.usersAuth.indexOf(Database.sessionAuth)
+        Database.usersAuth[index] = Database.sessionAuth!!.copy(photoUri = photoUri)
+        Database.sessionAuth = Database.usersAuth[index]
 
-            }
-            callback.onComplete()
-        }, 2000)
-    }
+        callback.onSuccess()
+      }
+      callback.onComplete()
+    }, 2000)
+  }
 
 }

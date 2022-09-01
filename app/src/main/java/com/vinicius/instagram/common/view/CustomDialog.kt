@@ -7,58 +7,59 @@ import android.view.View
 import android.view.Window
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.vinicius.instagram.R
 import com.vinicius.instagram.databinding.DialogCustomBinding
 
 class CustomDialog(context: Context) : Dialog(context) {
 
-    private lateinit var binding: DialogCustomBinding
+  private lateinit var binding: DialogCustomBinding
 
-    private lateinit var txtButtons: Array<TextView>
+  private lateinit var txtButtons: Array<TextView>
 
-    private var titleId: Int? = null
+  private var titleId: Int? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        binding = DialogCustomBinding.inflate(layoutInflater)
+    binding = DialogCustomBinding.inflate(layoutInflater)
 
-        setContentView(binding.root)
+    setContentView(binding.root)
+  }
+
+  override fun setTitle(titleId: Int) {
+    this.titleId = titleId
+  }
+
+  fun addButton(vararg texts: Int, listener: View.OnClickListener) {
+    txtButtons = Array(texts.size) {
+      TextView(context)
     }
 
-    override fun setTitle(titleId: Int) {
-        this.titleId = titleId
+    texts.forEachIndexed { index, txtId ->
+      txtButtons[index].id = txtId
+      txtButtons[index].setText(txtId)
+      txtButtons[index].setOnClickListener {
+        listener.onClick(it)
+        dismiss()
+      }
     }
 
-    fun addButton(vararg texts: Int, listener: View.OnClickListener) {
-        txtButtons = Array(texts.size) {
-            TextView(context)
-        }
+  }
 
-        texts.forEachIndexed { index, txtId ->
-            txtButtons[index].id = txtId
-            txtButtons[index].setText(txtId)
-            txtButtons[index].setOnClickListener {
-                listener.onClick(it)
-                dismiss()
-            }
-        }
+  override fun show() {
+    requestWindowFeature(Window.FEATURE_NO_TITLE)
+    super.show()
 
+    titleId?.let {
+      binding.dialogTitle.setText(it)
     }
 
-    override fun show() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        super.show()
+    for(textView in txtButtons) {
+      val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+      layoutParams.setMargins(30, 50, 30, 50)
 
-        titleId?.let {
-            binding.dialogTitle.setText(it)
-        }
-
-        for(textView in txtButtons) {
-            val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            layoutParams.setMargins(30, 50, 30, 50)
-
-            binding.dialogContainer.addView(textView, layoutParams)
-        }
+      binding.dialogContainer.addView(textView, layoutParams)
     }
+  }
 
 }

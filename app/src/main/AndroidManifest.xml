@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vinicius.instagram">
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <queries>
         <intent>
@@ -18,6 +22,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Instagram">
+        <activity
+            android:label="@string/photo"
+            android:name=".add.view.AddActivity" />
         <activity android:name=".splash.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,25 +32,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.view.MainActivity" />
-        <activity android:name=".register.view.RegisterActivity"></activity>
-        <activity android:name=".login.view.LoginActivity">
+        <activity
+            android:name=".main.view.MainActivity"
+            android:screenOrientation="portrait">
+
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
 
         </activity>
+        <activity android:name=".register.view.RegisterActivity" />
+        <activity android:name=".login.view.LoginActivity"></activity>
 
         <provider
-            android:authorities="com.vinicius.instagram.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vinicius.instagram.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-
         </provider>
-
-
     </application>
 
 </manifest>

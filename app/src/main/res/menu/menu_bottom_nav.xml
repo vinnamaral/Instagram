@@ -21,5 +21,4 @@
         android:icon="@drawable/ic_insta_profile"
         android:title="@string/home" />
 
-
 </menu>

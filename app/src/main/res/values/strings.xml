@@ -44,4 +44,6 @@
     <string name="logout">Deseja sair?</string>
     <string name="logout_action">Sair</string>
     <string name="cancel">Cancelar</string>
+    <string name="empty_list">Nenhum registro encontrado</string>
+    <string name="permission_camera_denied">Permissão não concedida. Habilite nas configurações do smartphone.</string>
 </resources>

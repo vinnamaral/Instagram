@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Instagram.FormContainer" >
+    <style name="Theme.Instagram.FormContainer">
         <item name="android:layout_marginStart">36dp</item>
         <item name="android:layout_marginEnd">36dp</item>
     </style>
 
-    <style name="Theme.Instagram.FormEditText" >
+    <style name="Theme.Instagram.FormEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
@@ -22,7 +22,7 @@
         <item name="android:layout_marginBottom">20dp</item>
     </style>
 
-    <style name="Theme.Instagram.Button" parent="Widget.MaterialComponents.Button" >
+    <style name="Theme.Instagram.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/white</item>
@@ -47,10 +47,16 @@
         <item name="android:layout_marginBottom">24dp</item>
     </style>
 
-    <style name="Theme.Instagram.Link" parent="Widget.AppCompat.Button.Borderless" >
+    <style name="Theme.Instagram.Link" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/blue_enabled</item>
+    </style>
+
+    <style name="Theme.Instagram.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
     </style>
 
     <style name="Theme.Instagram.TextViewProfile">
@@ -60,18 +66,13 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="Theme.Instagram.Button.White" parent="Widget.MaterialComponents.Button" >
+    <style name="Theme.Instagram.Button.White" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
         <item name="backgroundTint">@color/white</item>
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="Theme.Instagram.Icon">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">16dp</item>
-    </style>
 </resources>

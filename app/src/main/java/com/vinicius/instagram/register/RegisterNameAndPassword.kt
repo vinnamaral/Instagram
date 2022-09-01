@@ -6,19 +6,20 @@ import com.vinicius.instagram.common.base.BaseView
 
 interface RegisterNameAndPassword {
 
-    interface Presenter : BasePresenter {
-        fun create(email: String, name: String, password: String, confirm: String)
-    }
+  interface Presenter : BasePresenter {
+    fun create(email: String, name: String, password: String, confirm: String)
+  }
 
-    interface View: BaseView<Presenter> {
-        fun showProgress(enabled: Boolean)
+  interface View: BaseView<Presenter> {
+    fun showProgress(enabled: Boolean)
 
-        fun displayNameFailure(@StringRes nameError: Int?)
+    fun displayNameFailure(@StringRes nameError: Int?)
 
-        fun displayPasswordFailure(@StringRes passError: Int?)
+    fun displayPasswordFailure(@StringRes passError: Int?)
 
-        fun onCreateFailure(message: String)
+    fun onCreateFailure(message: String)
 
-        fun onCreateSuccess(name: String)
-    }
+    fun onCreateSuccess(name: String)
+  }
+
 }
