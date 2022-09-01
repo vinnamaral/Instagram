@@ -16,6 +16,7 @@ import com.vinicius.instagram.profile.data.ProfileDataSourceFactory
 import com.vinicius.instagram.profile.data.ProfileMemoryCache
 import com.vinicius.instagram.profile.data.ProfileRepository
 import com.vinicius.instagram.register.data.FakeRegisterDataSource
+import com.vinicius.instagram.register.data.FireRegisterDataSource
 import com.vinicius.instagram.register.data.RegisterRepository
 import com.vinicius.instagram.search.data.SearchFakeRemoteDataSource
 import com.vinicius.instagram.search.data.SearchRepository
@@ -33,7 +34,7 @@ object DependencyInjector {
   }
 
   fun registerEmailRepository() : RegisterRepository {
-    return RegisterRepository(FakeRegisterDataSource())
+    return RegisterRepository(FireRegisterDataSource())
   }
 
   fun searchRepository() : SearchRepository {
